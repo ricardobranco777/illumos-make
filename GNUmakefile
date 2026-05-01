@@ -31,17 +31,12 @@ ifeq ($(OS),Linux)
   ifneq ($(BSD_LIBS),)
     LIBS += $(BSD_LIBS)
   endif
-  LIBS += $(INTL_LIB)
 endif
 
 ifeq ($(OS),SunOS)
+  CC = gcc
+  CXX = g++
   LIBS += -lnsl
-  # prefer OpenCSW intl
-  ifneq ($(wildcard /opt/csw/lib/libintl.*),)
-    LIBS += -L/opt/csw/lib -lintl
-  else
-    LIBS += -lintl
-  endif
 endif
 
 # --- Common flags ---
