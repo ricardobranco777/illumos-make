@@ -57,6 +57,10 @@
 #include <stdlib.h>		/* closefrom() */
 #include <libintl.h>
 
+#ifndef O_DSYNC
+#define O_DSYNC		0
+#endif
+
 /*
  * typedefs & structs
  */

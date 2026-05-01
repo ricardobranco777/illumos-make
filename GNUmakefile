@@ -49,6 +49,8 @@ endif
 
 COMMON_CPPFLAGS = \
   -I$(INCDIR) \
+  -I/usr/local/include \
+  -I/usr/local/include/libelf \
   -I$(SRCDIR) \
   -I. \
   $(BSD_CFLAGS) \
