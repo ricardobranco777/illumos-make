@@ -35,6 +35,8 @@ ifeq ($(OS),Linux)
 endif
 
 ifeq ($(OS),SunOS)
+  CC = gcc
+  CXX = g++
   LIBS += -lnsl
   # prefer OpenCSW intl
   ifneq ($(wildcard /opt/csw/lib/libintl.*),)
