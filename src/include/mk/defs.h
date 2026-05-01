@@ -74,6 +74,7 @@
 #define	SETVAR(name, value, append) \
 				setvar_daemon(name, value, append, no_daemon, \
 				true, debug_level)
+#undef MAX
 #define	MAX(a, b)		(((a) > (b))?(a):(b))
 /*
  * New feature added to SUN5_0 make,  invoke the vanilla svr4 make when
@@ -86,6 +87,9 @@
  */
 #define	MAX_HOSTNAMELEN		32
 
+#ifndef MAXNAMELEN
+#define	MAXNAMELEN		256
+#endif
 
 /*
  * typedefs & structs
@@ -363,8 +367,8 @@ extern	Doname		execute_parallel(Property line, Boolean waitflg,
 	Boolean local = false);
 extern	Doname		execute_serial(Property line);
 extern	timestruc_t&	exists(Name target);
-extern	void		fatal(const char *, ...) __NORETURN;
-extern	void		fatal_reader(char *, ...) __NORETURN;
+extern	void		fatal(const char *, ...) __attribute__((__noreturn__));
+extern	void		fatal_reader(char *, ...) __attribute__((__noreturn__));
 extern	Doname		find_ar_suffix_rule(Name target, Name true_target,
 	Property *command, Boolean rechecking);
 extern	Doname		find_double_suffix_rule(Name target, Property *command,

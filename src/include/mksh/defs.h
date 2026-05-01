@@ -35,6 +35,8 @@
 #include <sys/time.h>		/* timestruc_t */
 #include <errno.h>		/* errno */
 
+#include <ctype.h>
+#include <wchar.h>		/* wcslen() */
 #include <wctype.h>
 
 /*
@@ -51,6 +53,13 @@ typedef enum {
 	succeeded =	1
 } Boolean;
 #define BOOLEAN(expr)		((expr) ? true : false)
+
+typedef struct timespec timestruc_t;
+
+#ifdef __linux__
+extern char *__progname;
+#define getprogname()   (__progname)
+#endif
 
 /*
  * Some random constants (in an enum so dbx knows their values)
