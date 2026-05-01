@@ -34,7 +34,9 @@
 /*
  * Included files
  */
+#if defined(__sun) || defined(linux)
 #include <alloca.h>		/* alloca() */
+#endif
 #include <errno.h>		/* errno */
 #include <fcntl.h>		/* fcntl() */
 #include <mk/defs.h>

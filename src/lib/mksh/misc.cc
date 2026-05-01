@@ -49,6 +49,7 @@
 #include <sys/wait.h>		/* wait() */
 
 #include <string.h>		/* strerror() */
+#include <unistd.h>		/* getcwd() on *BSD */
 #include <libintl.h>
 
 

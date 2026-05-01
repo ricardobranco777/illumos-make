@@ -35,7 +35,9 @@
 /*
  * Included files
  */
+#if defined(__sun) || defined(linux)
 #include <alloca.h>		/* alloca() */
+#endif
 #include <fcntl.h>
 #include <mk/defs.h>
 #include <mksh/i18n.h>		/* get_char_semantics_value() */

@@ -39,7 +39,9 @@
 /*
  * Included files
  */
+#if defined(__sun) || defined(linux)
 #include <alloca.h>		/* alloca() */
+#endif
 #include <ar.h>
 #include <ctype.h>		/* isspace() */
 #include <errno.h>		/* errno */
