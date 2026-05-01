@@ -1638,7 +1638,17 @@ make_install_prefix(void)
 	char origin[PATH_MAX];
 	char *dir;
 
-	if ((ret = readlink("/proc/self/path/a.out", origin,
+#if defined(__linux__)
+#define PROCSELFEXE	"/proc/self/exe"
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
+#define PROCSELFEXE	"/proc/curproc/exe"
+#elif defined(__sun)
+#define PROCSELFEXE	"/proc/self/path/a.out"
+#else
+#error "Please define PROCSELFEXE"
+#endif
+
+	if ((ret = readlink(PROCSELFEXE, origin,
 	    PATH_MAX - 1)) < 0)
 		fatal("failed to read origin from /proc\n");
 
