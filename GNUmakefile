@@ -12,6 +12,7 @@ WARN_FLAGS ?= \
 	-Wno-parentheses \
 	-Wno-stringop-overflow \
 	-Wno-switch \
+	-Wno-unknown-warning-option \
 	-Wno-unused-value
 
 CXX	?= g++
