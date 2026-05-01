@@ -25,9 +25,11 @@
 
 
 #include <sys/types.h>
+extern "C" {
 #include <sys/time.h>
+}
 
-extern int utimes(char *file, struct timeval *tvp);
+//extern int utimes(char *file, struct timeval *tvp);
 
 #include <vroot/vroot.h>
 #include <vroot/args.h>
