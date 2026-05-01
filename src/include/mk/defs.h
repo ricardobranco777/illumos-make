@@ -307,7 +307,7 @@ extern	Boolean		rebuild_arg0;
  * Declarations of system defined variables
  */
 /* On linux this variable is defined in 'signal.h' */
-#ifndef BSD
+#if defined(__sun) || defined(linux)
 extern	char		*sys_siglist[];
 #endif
 

@@ -36,7 +36,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/utsname.h>
-#if 0
+#ifdef __sun
 #include <rpc/rpc.h>		/* host2netname(), netname2host() */
 #else
 #include <unistd.h>		/* gethostname() */
@@ -196,7 +196,7 @@ read_make_machines(Name make_machines_name)
 	MBSTOWCS(local_host, local_host_mb);
 	local_host_wslen = wcslen(local_host);
 
-#if 0
+#ifdef __sun
 	// There is no getdomainname() function on Solaris.
 	// And netname2host() function does not work on Linux.
 	// So we have to use different APIs.
