@@ -161,6 +161,6 @@ clean:
 	  $(LIBMKSH) $(LIBVROOT) $(LIBMAKESTATE)
 
 test:	$(PROG)
-	MAKE=$$PWD/make FILEDIR=$$PWD/test/files sh test/make_test.ksh
+	MAKE=$$PWD/make FILEDIR=$$PWD/test/files bash test/make_test.ksh
 
 .PHONY: all install clean test
