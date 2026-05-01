@@ -36,7 +36,11 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/utsname.h>
+#if 0
 #include <rpc/rpc.h>		/* host2netname(), netname2host() */
+#else
+#include <unistd.h>		/* gethostname() */
+#endif
 #include <libintl.h>
 
 /*
@@ -83,7 +87,7 @@ read_make_machines(Name make_machines_name)
 	wchar_t			local_host[MAX_HOSTNAMELEN + 1];
 	char			local_host_mb[MAX_HOSTNAMELEN + 1] = "";
 	int			local_host_wslen;
-	wchar_t			full_host[MAXNETNAMELEN + 1];
+	wchar_t			full_host[MAXHOSTNAMELEN + 1];
 	int			full_host_wslen = 0;
 	char			*homedir;
 	Name			MAKE_MACHINES;
@@ -192,14 +196,21 @@ read_make_machines(Name make_machines_name)
 	MBSTOWCS(local_host, local_host_mb);
 	local_host_wslen = wcslen(local_host);
 
+#if 0
 	// There is no getdomainname() function on Solaris.
 	// And netname2host() function does not work on Linux.
 	// So we have to use different APIs.
 	if (host2netname(mbs_buffer, NULL, NULL) &&
-	    netname2host(mbs_buffer, mbs_buffer2, MAXNETNAMELEN+1)) {
+	    netname2host(mbs_buffer, mbs_buffer2, MAXHOSTNAMELEN+1)) {
 		MBSTOWCS(full_host, mbs_buffer2);
 		full_host_wslen = wcslen(full_host);
 	}
+#else
+	if (gethostname(mbs_buffer2, MAXHOSTNAMELEN) == 0) {
+		MBSTOWCS(full_host, mbs_buffer2);
+		full_host_wslen = wcslen(full_host);
+	}
+#endif
 
 	for (ms = make_machines_list;
 	     (ms) && (*ms );

@@ -39,7 +39,9 @@
  * Included files
  */
 #include <sys/wait.h>			/* WIFEXITED(status) */
+#if defined(__sun) || defined(linux)
 #include <alloca.h>		/* alloca() */
+#endif
 
 #include <stdio.h>		/* errno */
 #include <errno.h>		/* errno */
@@ -54,6 +56,10 @@
 #include <unistd.h>		/* close(), dup2() */
 #include <stdlib.h>		/* closefrom() */
 #include <libintl.h>
+
+#ifndef O_DSYNC
+#define O_DSYNC		0
+#endif
 
 /*
  * typedefs & structs

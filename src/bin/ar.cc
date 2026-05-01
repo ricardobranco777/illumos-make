@@ -39,7 +39,9 @@
 /*
  * Included files
  */
+#if defined(__sun) || defined(linux)
 #include <alloca.h>		/* alloca() */
+#endif
 #include <ar.h>
 #include <ctype.h>		/* isspace() */
 #include <errno.h>		/* errno */
@@ -482,7 +484,7 @@ read_archive_dir(Ar *arp, Name library, char **long_names_table)
 			     */
 			    len = ar_member_name_len;
 			    sscanf(arp->ar_port.ar_name + 1,
-				   "%ld",
+				   "%d",
 				   &offset);
 			    q = *long_names_table + offset;
 		    } else {
@@ -588,7 +590,7 @@ process_long_names_member(Ar *arp, char **long_names_table, char *filename)
 		      "//              ",
 		      16)){
 		if (sscanf(ar_member_header->ar_size,
-			   "%ld",
+			   "%d",
 			   &table_size) != 1) {
 			return failed;
 		}
@@ -726,7 +728,7 @@ translate_entry(Ar *arp, Name target, Property member, char **long_names_table)
 					goto read_error;
 				}
 				if (sscanf(arp->ar_port.ar_date,
-					   "%ld",
+					   "%d",
 					   &date) != 1) {
 					fatal(gettext("Bad date field for member `%s' in archive `%s'"),
 					      arp->ar_port.ar_name,
@@ -735,7 +737,7 @@ translate_entry(Ar *arp, Name target, Property member, char **long_names_table)
 		    /* If it's a long name, retrieve it from long name table */
 		    if (arp->ar_port.ar_name[0] == '/') {
 			    sscanf(arp->ar_port.ar_name + 1,
-				   "%ld",
+				   "%d",
 				   &offset);
 			    len = ar_member_name_len;
 			    hp = *long_names_table + offset;

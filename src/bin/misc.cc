@@ -48,6 +48,7 @@
 #include <stdarg.h>		/* va_list, va_start(), va_end() */
 #include <vroot/report.h>	/* SUNPRO_DEPENDENCIES */
 #include <time.h>
+#include <unistd.h>		/* getcwd() on *BSD */
 #include <libintl.h>
 
 extern void job_adjust_fini();

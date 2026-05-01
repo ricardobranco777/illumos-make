@@ -6,11 +6,14 @@ MANDIR	?= $(PREFIX)/share/man
 DATADIR	?= $(PREFIX)/share/$(PROG)
 DOCDIR	?= $(PREFIX)/share/doc/$(PROG)
 
+WARN_FLAGS = \
+	-Wno-format-extra-args
+
 CXX	?= g++
 CC	?= gcc
 AR	?= ar
-CXXFLAGS ?= -O2
-CFLAGS	 ?= -O2
+CXXFLAGS ?= -O2 $(WARN_FLAGS)
+CFLAGS	 ?= -O2 $(WARN_FLAGS)
 
 SRCDIR	= src
 BINOBJ	= $(SRCDIR)/bin
@@ -28,10 +31,6 @@ ifeq ($(OS),Linux)
   ifneq ($(BSD_LIBS),)
     LIBS += $(BSD_LIBS)
   endif
-  TIRPC_CFLAGS := $(shell pkg-config --cflags libtirpc 2>/dev/null)
-  TIRPC_LIBS   := $(shell pkg-config --libs   libtirpc 2>/dev/null)
-  LIBS += $(TIRPC_LIBS)
-  INTL_LIB := $(shell printf 'int main(){}' | $(CC) -o /dev/null -x c - -lintl 2>/dev/null && echo -lintl)
   LIBS += $(INTL_LIB)
 endif
 
@@ -49,10 +48,11 @@ endif
 
 COMMON_CPPFLAGS = \
   -I$(INCDIR) \
+  -I/usr/local/include \
+  -I/usr/local/include/libelf \
   -I$(SRCDIR) \
   -I. \
-  $(BSD_CFLAGS) \
-  $(TIRPC_CFLAGS)
+  $(BSD_CFLAGS)
 
 all: $(PROG)
 
@@ -161,6 +161,6 @@ clean:
 	  $(LIBMKSH) $(LIBVROOT) $(LIBMAKESTATE)
 
 test:	$(PROG)
-	MAKE=$$PWD/make FILEDIR=$$PWD/test/files sh test/make_test.ksh
+	MAKE=$$PWD/make FILEDIR=$$PWD/test/files bash test/make_test.ksh
 
 .PHONY: all install clean test
