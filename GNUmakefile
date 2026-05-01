@@ -39,10 +39,12 @@ ifeq ($(OS),SunOS)
 	LIBS += -lnsl
 endif
 
+LIBELF_CFLAGS := $(shell pkg-config --cflags libelf 2>/dev/null)
+LIBELF_LIBS   := $(shell pkg-config --libs   libelf 2>/dev/null)
+LIBS += $(LIBELF_LIBS)
+
 COMMON_CPPFLAGS = \
 	-I$(INCDIR) \
-	-I/usr/local/include \
-	-I/usr/local/include/libelf \
 	-I$(SRCDIR) \
 	-I. \
 	$(BSD_CFLAGS)
