@@ -137,23 +137,23 @@ test_make_C_invalid() {
 
 	tst="make -C error"
 	$MAKE -C > $outf 2>&1 && fail "$tst" || pass "$tst"
-	egrep -s 'Missing argument' $outf && pass "$tst (output)" \
+	grep -E -s 'Missing argument' $outf && pass "$tst (output)" \
 	    || fail "$tst (output)"
 
 	tst="MAKEFLAGS=-C error"
 	MAKEFLAGS="-C" $MAKE > $outf 2>&1 && fail "$tst" || pass "$tst"
-	egrep -s 'Missing argument' $outf && pass "$tst (output)" \
+	grep -E -s 'Missing argument' $outf && pass "$tst (output)" \
 	    || fail "$tst (output)"
 
 	tst="make -C <noexist>"
 	$MAKE -C /no/such/directory > $outf 2>&1 && fail "$tst" || pass "$tst"
-	egrep -s 'No such file or directory' $outf && pass "$tst (output)" \
+	grep -E -s 'No such file or directory' $outf && pass "$tst (output)" \
 	    || fail "$tst (output)"
 
 	tst="MAKEFLAGS=-C <noexist>"
 	MAKEFLAGS="-C /no/such/directory" $MAKE > $outf 2>&1 && fail "$tst" \
 	    || pass "$tst"
-	egrep -s 'No such file or directory' $outf  && pass "$tst (output)" \
+	grep -E -s 'No such file or directory' $outf  && pass "$tst (output)" \
 	    || fail "$tst (output)"
 
 	rm -f $outf
