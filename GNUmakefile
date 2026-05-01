@@ -155,9 +155,12 @@ $(PROG): $(BIN_OBJS) $(COMPAT_OBJS) $(LIBS_STATIC)
 	$(CC) $(CFLAGS) $(COMMON_CPPFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(PROG) \
+	$(RM) -f $(PROG) \
 	  $(BIN_OBJS) $(COMPAT_OBJS) \
 	  $(MKSH_OBJS) $(VROOT_OBJS) $(MAKESTATE_OBJS) \
 	  $(LIBMKSH) $(LIBVROOT) $(LIBMAKESTATE)
 
-.PHONY: all install clean
+test:	$(PROG)
+	MAKE=$$PWD/make FILEDIR=$$PWD/test/files sh test/make_test.ksh
+
+.PHONY: all install clean test
