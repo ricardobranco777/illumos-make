@@ -45,7 +45,7 @@ function check_results {
 }
 
 test_make_C() {
-	TD=$(mktemp -d -t)
+	TD=$(mktemp -d)
 
 	if [[ ! -d "$TD" ]]; then
 		fail "couldn't create test directory $TD"
@@ -89,7 +89,7 @@ test_make_C() {
 }
 
 test_make_C_multiple() {
-	TD=$(mktemp -d -t)
+	TD=$(mktemp -d)
 
 	if [[ ! -d "$TD" ]]; then
 		fail "couldn't create test directory $TD"
