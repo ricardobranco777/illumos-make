@@ -107,7 +107,7 @@ getmem(size_t size)
 {
 	char *result = (char *)malloc(size);
 	if (result == NULL) {
-		(void) fprintf(stderr, "*** Error: malloc(%d) failed: %s\n%s",
+		(void) fprintf(stderr, "*** Error: malloc(%zu) failed: %s\n%s",
 		    size, strerror(errno),
 		    gettext("mksh: Fatal error: Out of memory\n"));
 		exit(1);
@@ -305,7 +305,7 @@ setup_char_semantics(void)
 	} else {
 		s = "=@-?!+";
 	}
-	for (s; MBTOWC(wc_buffer, s); s++) {
+	for (; MBTOWC(wc_buffer, s); s++) {
 		entry = get_char_semantics_entry(*wc_buffer);
 		char_semantics[entry] |= (int) command_prefix_sem;
 	}

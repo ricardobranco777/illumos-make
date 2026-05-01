@@ -1391,7 +1391,7 @@ dynamic_dependencies(Name target)
 		/* We also have to deal with dependencies that expand to */
 		/* lib.a(members) notation */
 		for (p = start; *p != (int) nul_char; p++) {
-			if ((*p == (int) parenleft_char)) {
+			if (((*p == (int) parenleft_char)) != 0) {
 				lib = GETNAME(start, p - start);
 				lib->is_member = true;
 				first_member = dependency;
@@ -1646,7 +1646,7 @@ run_command(Property line, Boolean)
 		   strcpy(tmp_file_path, temp_file_directory);
 		}
 		sprintf(mbs_buffer,
-				"%s/.make.dependency.%08x.%d.%d",
+				"%s/.make.dependency.%08lx.%d.%d",
 			        tmp_file_path,
 			        hostid,
 			        getpid(),
