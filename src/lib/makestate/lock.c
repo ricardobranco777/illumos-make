@@ -116,7 +116,7 @@ file_lock(char * name, char * lockname, int timeout)
 			 * expired.
 			 */
 			(void) sprintf(tmpname, "%s.XXXXXX", lockname);
-			(void) mkstemp(tmpname);
+			(void) mktemp(tmpname);
 			fd = creat(tmpname, 0666);
 			if (fd != -1) {
 				(void) close(fd);

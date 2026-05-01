@@ -645,7 +645,7 @@ distribute_process(char **commands, Property line)
 		        getpid(),
 	                file_number++);
 
-	mkstemp(mbstring);
+	mktemp(mbstring);
 
 	stdout_file = strdup(mbstring);
 	stderr_file = NULL;
@@ -657,7 +657,7 @@ distribute_process(char **commands, Property line)
 			        getpid(),
 		                file_number++);
 
-		mkstemp(mbstring);
+		mktemp(mbstring);
 
 		stderr_file = strdup(mbstring);
 	}
