@@ -150,9 +150,9 @@ write_state_file(int, Boolean exiting)
 	(void) sprintf(make_state_lockfile,
 	               "%s.lock",
 	               make_state->string_mb);
-	if ((lock_err = file_lock(make_state->string_mb,
+	if (lock_err = file_lock(make_state->string_mb,
 				 make_state_lockfile,
-				 (int *) &make_state_locked, 0)) != 0) {
+				 (int *) &make_state_locked, 0)) {
 		retmem_mb(make_state_lockfile);
 		make_state_lockfile = NULL;
 
@@ -257,7 +257,7 @@ write_state_file(int, Boolean exiting)
 		for (m = 0, dependency = lines->body.line.dependencies;
 		     dependency != NULL;
 		     dependency = dependency->next) {
-			if ((m = !dependency->stale) != 0
+			if (m = !dependency->stale
 			    && (dependency->name != force)
 #ifndef PRINT_EXPLICIT_DEPEN
 			    && dependency->automatic

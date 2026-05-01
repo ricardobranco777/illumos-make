@@ -2,7 +2,7 @@
 #ifndef _LIBINTL_H
 #define _LIBINTL_H
 
-#define gettext(s)	((char *)(s))
-#define textdomain(d)	((void) d)
+#define gettext(s)		((char *)(s))
+#define textdomain(d)		(d)
 
 #endif

@@ -157,7 +157,7 @@ get_next_block_fn(Source source)
 					     mbs_buffer);
 			*source->string.text.end++ = (int) newline_char;
 			*source->string.text.end = (int) nul_char;
-			source->string.buffer.end++;
+			*source->string.buffer.end++;
 		}
 		if (source->inp_buf != NULL) {
 			retmem_mb(source->inp_buf);

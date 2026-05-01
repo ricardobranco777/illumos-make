@@ -223,7 +223,7 @@ report_dep(char *iflag, char *filename)
 		fprintf(command_output_fp, "%s:", sfile);
 	}
 	fprintf(command_output_fp, " ");
-	fprintf(command_output_fp, "%s", iflag);
+	fprintf(command_output_fp, iflag);
 	if (iflag != NULL) {
 		is_path = 1;
 	}

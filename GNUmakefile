@@ -6,14 +6,11 @@ MANDIR	?= $(PREFIX)/share/man
 DATADIR	?= $(PREFIX)/share/$(PROG)
 DOCDIR	?= $(PREFIX)/share/doc/$(PROG)
 
-WARN_FLAGS = \
-	-Wno-format-extra-args
-
 CXX	?= g++
 CC	?= gcc
 AR	?= ar
-CXXFLAGS ?= -O2 $(WARN_FLAGS)
-CFLAGS	 ?= -O2 $(WARN_FLAGS)
+CXXFLAGS ?= -O2
+CFLAGS	 ?= -O2
 
 SRCDIR	= src
 BINOBJ	= $(SRCDIR)/bin

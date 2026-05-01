@@ -2117,7 +2117,7 @@ read_files_and_state(int argc, char **argv)
 		cp = makeflags_and_macro.start;
 		do {
 			append_char(tmp_char, &makeflags_string_posix);
-		} while ( (tmp_char = *cp++) != '\0' );
+		} while ( tmp_char = *cp++ );
 		retmem_mb(makeflags_and_macro.start);
 	}
 
@@ -2417,7 +2417,7 @@ read_files_and_state(int argc, char **argv)
 		   char tmp_path[MAXPATHLEN];
 		   char *slashp;
 
-		   if ((slashp = strrchr(make_state->string_mb, '/')) != NULL) {
+		   if (slashp = strrchr(make_state->string_mb, '/')) {
 		      strncpy(tmp_path, make_state->string_mb,
 				(slashp - make_state->string_mb));
 			tmp_path[slashp - make_state->string_mb]=0;

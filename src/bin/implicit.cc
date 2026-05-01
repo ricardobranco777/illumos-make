@@ -231,10 +231,10 @@ posix_attempts:
 				/* + 8 to add "s." or "SCCS/s." */
 			        memset(tmpbuf,0,source->hash.length + 8);
 			        source->string_mb[source->hash.length - 1] = '\0';
-			        if((p = (char *) memchr((char *)source->string_mb,'/',source->hash.length)) != NULL)
+			        if(p = (char *) memchr((char *)source->string_mb,'/',source->hash.length))
 				{
 			          while(1) {
-				    if((np = (char *) memchr((char *)p+1,'/',source->hash.length - (p - source->string_mb))) != NULL) {
+				    if(np = (char *) memchr((char *)p+1,'/',source->hash.length - (p - source->string_mb))) {
 			              p = np;
 			            } else {break;}
 			          }
@@ -347,8 +347,6 @@ posix_attempts:
 					retmem(sourcename);
 				}
 				return build_failed;
-			default:
-				break;
 			}
 
 			if (debug_level > 1) {
@@ -558,8 +556,6 @@ find_ar_suffix_rule(Name target, Name true_target, Property *command, Boolean re
 			return build_ok;
 		case build_running:
 			return build_running;
-		default:
-			break;
 		}
 		/*
 		 * If no rule was found, we try the next suffix to see
@@ -664,8 +660,6 @@ find_double_suffix_rule(Name target, Property *command, Boolean rechecking)
 			return build_ok;
 		case build_running:
 			return build_running;
-		default:
-			break;
 		}
 		if (true_target->suffix_scan_done == true) {
 			scanned_once = true;
