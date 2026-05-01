@@ -47,6 +47,7 @@
 #include <mksh/misc.h>		/* enable_interrupt() */
 #include <stdarg.h>		/* va_list, va_start(), va_end() */
 #include <vroot/report.h>	/* SUNPRO_DEPENDENCIES */
+#include <time.h>
 #include <libintl.h>
 
 extern void job_adjust_fini();

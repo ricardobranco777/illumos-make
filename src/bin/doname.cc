@@ -44,7 +44,9 @@
 #include <poll.h>
 #include <libintl.h>
 #include <signal.h>
+#ifdef __sun
 #include <stropts.h>
+#endif
 #include <sys/errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>

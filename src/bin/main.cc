@@ -53,12 +53,15 @@
 #include <sys/stat.h>		/* fstat() */
 #include <fcntl.h>		/* open() */
 
+#ifdef __sun
 #	include <sys/systeminfo.h>	/* sysinfo() */
+#endif
 
 #include <sys/types.h>		/* stat() */
 #include <sys/wait.h>		/* wait() */
 #include <unistd.h>		/* execv(), unlink(), access() */
 #include <vroot/report.h>	/* report_dependency(), get_report_file() */
+#include <libintl.h>
 
 // From read2.cc
 extern	Name		normalize_name(wchar_t *name_string, int length);
@@ -69,6 +72,7 @@ extern void job_adjust_fini();
 /*
  * Defined macros
  */
+#ifdef __sun
 #define	LD_SUPPORT_ENV_VAR	"SGS_SUPPORT_32"
 #define	LD_SUPPORT_ENV_VAR_32	"SGS_SUPPORT_32"
 #define	LD_SUPPORT_ENV_VAR_64	"SGS_SUPPORT_64"
@@ -79,6 +83,7 @@ extern void job_adjust_fini();
 #define	LD_SUPPORT_MAKE_ARCH	"sparc"
 #else
 #error "Unsupported architecture"
+#endif
 #endif
 
 /*
@@ -1687,6 +1692,7 @@ add_to_env(const char *var, const char *value, const char *fallback)
 static void
 set_sgs_support()
 {
+#ifdef __sun
 	int		len;
 	char		*newpath, *newpath64;
 	char		*lib32, *lib64;
@@ -1741,6 +1747,7 @@ set_sgs_support()
 	free(lib32);
 	free(lib64);
 	free(origin);
+#endif
 }
 
 /*

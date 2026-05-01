@@ -33,9 +33,7 @@
 #include <signal.h>
 
 
-#ifndef __cplusplus
 typedef void (*SIG_PF) (int);
-#endif
 
 #ifdef __cplusplus
 extern "C" SIG_PF bsd_signal(int a, SIG_PF b);

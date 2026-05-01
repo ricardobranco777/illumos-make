@@ -44,7 +44,7 @@ extern	char *		sys_errlist[];
 extern	int		sys_nerr;
 #endif /* #_LP64 */
 
-static	void		file_lock_error();
+static void file_lock_error(char *msg, char *file, const char *str, char *arg1, char *arg2);
 
 /*
  * This code stolen from the NSE library and changed to not depend
@@ -122,12 +122,12 @@ file_lock(char * name, char * lockname, int timeout)
 				(void) close(fd);
 			} else {
 				file_lock_error(msg, name,
-				    (const char *)"creat(%s)", tmpname);
+				    (const char *)"creat(%s)", tmpname, "");
 				return (msg);
 			}
 			if (stat(tmpname, &fs_statb) == -1) {
 				file_lock_error(msg, name,
-				    (const char *)"stat(%s)", tmpname);
+				    (const char *)"stat(%s)", tmpname, "");
 				return (msg);
 			}
 			(void) unlink(tmpname);

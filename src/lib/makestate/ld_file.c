@@ -33,6 +33,15 @@
 #include <sys/param.h>
 #include <link.h>
 
+/*
+ * Flags passed to ld support calls.
+ */
+#ifndef __sun
+#define LD_SUP_DERIVED          0x1     /* derived filename */
+#define LD_SUP_INHERITED        0x2     /* file inherited from .so DT_NEEDED */
+#define LD_SUP_EXTRACTED        0x4     /* file extracted from archive */
+#endif
+
 #define	SUNPRO_DEPENDENCIES	"SUNPRO_DEPENDENCIES"
 
 /*
