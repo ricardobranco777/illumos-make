@@ -3223,7 +3223,7 @@ APPEND_MACRO:
 	strcat(Ar->start, " ");
 	strncat(Ar->start, name, cp0-name);
 	strcat(Ar->start, "=");
-	strncat(Ar->start, esc_value, strlen(esc_value));
+	strlcat(Ar->start, esc_value, Ar->size);
 	free(esc_value);
 	return;
 ERROR_MACRO:
