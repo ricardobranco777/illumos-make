@@ -28,10 +28,6 @@ ifeq ($(OS),Linux)
   ifneq ($(BSD_LIBS),)
     LIBS += $(BSD_LIBS)
   endif
-  TIRPC_CFLAGS := $(shell pkg-config --cflags libtirpc 2>/dev/null)
-  TIRPC_LIBS   := $(shell pkg-config --libs   libtirpc 2>/dev/null)
-  LIBS += $(TIRPC_LIBS)
-  INTL_LIB := $(shell printf 'int main(){}' | $(CC) -o /dev/null -x c - -lintl 2>/dev/null && echo -lintl)
   LIBS += $(INTL_LIB)
 endif
 
@@ -53,8 +49,7 @@ COMMON_CPPFLAGS = \
   -I/usr/local/include/libelf \
   -I$(SRCDIR) \
   -I. \
-  $(BSD_CFLAGS) \
-  $(TIRPC_CFLAGS)
+  $(BSD_CFLAGS)
 
 all: $(PROG)
 
